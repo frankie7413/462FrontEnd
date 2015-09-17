@@ -87,6 +87,7 @@
 
                     <hr class="light">
                     <h2 class="text-center">Feedback Form</h2>
+
                     <div class="btn-group">
                         <p id="collegeOption">College</p>
                         <select id="colleges" class="btn btn-default">
@@ -112,14 +113,18 @@
                         </select>
                     </div>
 
-                    <p class="text-left">Subject: </p>
+                    <p class="text-left" id="subjectTitle">Subject: </p>
                     <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject">
-                    <p class="text-left">Email(optional): </p>
-                    <input type="text" class="form-control" placeholder="Email(Optional)">
-                    <p class="text-left">Message: </p>
-                    <textarea class="form-control" placeholder="Enter Message here" rows="8"></textarea>
+
+                    <p class="text-left" id="emailTitle">Email(optional): </p>
+                    <input type="text" name="email" id="email" class="form-control" placeholder="Email(Optional)">
+
+                    <p class="text-left" id="messageTitle">Message: </p>
+                    <textarea class="form-control" name="message" id="message" placeholder="Enter Message here" rows="8"></textarea>
+
                     <p id="fillSection"></p>
                     <input type="button" name="button" value="submit" id="button" class="btn btn-default btn-xl">
+
                 </div>
             </div>
         </div>
