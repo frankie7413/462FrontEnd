@@ -91,7 +91,7 @@
                     <input type="text" name="subject" class="form-size" id="subject" placeholder="case sensitive">
                     <br>
                     <br>
-                    <input type="button" name="button" value="Log In" id="button" class="btn btn-default btn-xl">
+                    <input type="button" name="button" value="Log In" id="Logbutton" class="btn btn-default btn-xl">
                 </div>
             </div>
         </div>
@@ -105,28 +105,31 @@
                     <h2 class="section-heading">Sign Up!</h2>
                     <hr class="light">
 
+                    <div id="submitForm">
                     <div class="btn-group">
-                        <p>College</p>
+                        <p id="collegeOption">College</p>
                         <select id="colleges" class="btn btn-default">
                             <option value="college">Select Campus</option>
-                            <option value="college">CSUF</option>
+                            <option value="CSUF">CSUF</option>
                         </select>
                     </div>
 
-                    <p>First Name: </p>
-                    <input type="text" class="form-control" placeholder="First Name">
+                    <p id="fnameText">First Name: </p>
+                    <input type="text" id="fname" class="form-control" placeholder="First Name">
 
-                    <p>Last Name: </p>
-                    <input type="text" class="form-control" placeholder="Last Name">
+                    <p id="lnameText">Last Name: </p>
+                    <input type="text" id="lname" class="form-control" placeholder="Last Name">
 
-                    <p>Email: </p>
-                    <input type="text" class="form-control" placeholder="Email must be .edu">
+                    <p id="emailText">Email: </p>
+                    <input type="text" id="email" class="form-control" placeholder="Email must be .edu">
 
-                    <p>Password: </p>
-                    <input type="text" name="Password" id="subject" class="form-control" placeholder="Must be 8 characters long">
+                    <p id="passwordText">Password: </p>
+                    <input type="text" id="password" name="Password" id="subject" class="form-control" placeholder="Must be 8 characters long">
 
-                    <br>
-                    <input type="button" name="button" value="submit" id="button" class="btn btn-default btn-xl">
+                    <p id="fillSection"></p>
+                    <input type="button" name="button" value="submit" id="Signbutton" class="btn btn-default btn-xl">
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -163,7 +166,7 @@
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/jquery.fittext.js"></script>
     <script src="js/wow.min.js"></script>
-    <script src="javascript/app.js"></script>
+    <script src="javascript/appProf.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="js/creative.js"></script>
