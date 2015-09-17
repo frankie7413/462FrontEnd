@@ -4,7 +4,8 @@ var main = function() {
 		lname,
 		email,
 		password,
-		missingField;
+		missingField,
+		$content;
 
 	//makes sure that the fields have a valid input and fowards content to server
 	function SectionmissingField(check){
@@ -14,7 +15,7 @@ var main = function() {
 			$('#fillSection').append('Please fill in area with *.');
 		} else {
 			console.log('Inputs are complete');
-			//PostInformation();
+			PostInformation();
 		}
 	};
 
@@ -23,13 +24,22 @@ var main = function() {
 		console.log('suppose to empty');
 		$('#submitForm').empty();
 		$('#submitForm').append($('<p class="text-center">').text('Your infomation that you entered:'));
+
+		$content = $('<ul class="text-center">');
+		$content.append($('<li>').text('College: ' + college));
+		$content.append($('<li>').text('First Name '+ fname));
+		$content.append($('<li>').text('Last Name: '+ lname));
+		$content.append($('<li>').text('Email: '+ email));
+		$content.append($('<li>').text('password: '+ password));
+
+		$('#submitForm').append($content);
 	}
 
 
 	//http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
 	function validateEmail(checkEmail) {
     	//var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    	var re = /^([\w-]+(?:\.[\w-]+)*)@msu\.edu/i;
+    	var re = /^([\w-]+(?:\.[\w-]+)*)@csu.fullerton\.edu/i;
     	return re.test(email);
 	}
 
@@ -69,15 +79,33 @@ var main = function() {
 			$('#lnameText').append('Last Name:');
 		}
 
-		// if($('#email').val() === ''){
-		// 	missingField = false;
-		// 	$('#emailText').empty();
-		// 	$('#emailText').append('Email:*');
-		// }else {
-		// 	lname = $('#fname').val();
-		// 	$('#emailText').empty();
-		// 	$('#emailText').append('Last Name:');
-		// }
+		if($('#email').val() === ''){
+			missingField = false;
+			$('#emailText').empty();
+			$('#emailText').append('Email:*');
+		}else {
+			email = $('#email').val();
+			if(validateEmail(email)){
+				$('#emailText').empty();
+				$('#emailText').append('Last Name:');
+				console.log(email);
+				console.log('valid email');
+			} else {
+				missingField = false;
+				$('#emailText').empty();
+				$('#emailText').append('Email:* Enter Valid Email');
+			}
+		}
+
+		if($('#password').val() === ''){
+			missingField = false;
+			$('#passwordText').empty();
+			$('#passwordText').append('Password:*');
+		}else {
+			password = $('#password').val();
+			$('#passwordText').empty();
+			$('#passwordText').append('Password:');
+		}
 
 
 		SectionmissingField(missingField);
