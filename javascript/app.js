@@ -5,23 +5,36 @@ var main = function() {
 		subject,
 		message,
 		email,
-		missingField;
+		missingField,
+		$content;
 
-
+	//makes sure that the fields have a valid input and fowards content to server
 	function SectionmissingField(check){
+		console.log('checking fields')
 		if(check === false){
 			$('#fillSection').empty(); //for when user does nor fill fields properly
 			$('#fillSection').append('Please fill in area with *.');
 		} else {
 			console.log('Inputs are complete');
+			PostInformation();
 		}
-
-		
 	};
 
+	//going to suppy information to sql server 
 	function PostInformation () {
-		
-		// body...
+		console.log('suppose to empty');
+		$('#submitForm').empty();
+		$('#submitForm').append($('<p class="text-center">').text('Your infomation that you entered:'));
+
+		$content = $('<ul class="text-center">');
+		$content.append($('<li>').text('college: ' + college));
+		$content.append($('<li>').text('major '+ major));
+		$content.append($('<li>').text('course: '+ course));
+		$content.append($('<li>').text('subject: '+ subject));
+		$content.append($('<li>').text('email: '+ email));
+		$content.append($('<li>').text('message: '+ message));
+
+		$('#submitForm').append($content);
 	}
 
 
@@ -35,6 +48,7 @@ var main = function() {
 	//checks that all the fields have an input by user
 	$('#button').click(function(){
 		//alert('button press');
+		missingField = true;
 		console.log('button press')
 		if ($('#colleges').val() === 'college')
 		{
@@ -104,6 +118,7 @@ var main = function() {
 
 		if (!$.trim($("#message").val())) {
     		// textarea is empty or contains only white-space
+    		missingField = false;
     		console.log('Empty text body');
     		$('#messageTitle').empty();
 			$('#messageTitle').append('Message:*');
@@ -111,18 +126,8 @@ var main = function() {
 		else{
 			message = $.trim($("#message").val());
 			$('#messageTitle').empty();
-			$('#messageTitle').append('Message:*');
+			$('#messageTitle').append('Message:');
 		}
-
-		// if(!$.trim($('#message')).val()){
-		// 	missingField = false;
-		// 	$('#messageTittle').empty();
-		// 	$('#messageTittle').append('Message:*');
-		// } else{
-		// 	message = $('#message').val();
-		// 	$('#messageTittle').empty();
-		// 	$('#messageTittle').append('Message:');
-		// }
 
 		SectionmissingField(missingField);
 
