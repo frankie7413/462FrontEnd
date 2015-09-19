@@ -6,7 +6,8 @@ var main = function() {
 		password,
 		passwordType,
 		missingField,
-		$content;
+		$content,
+		errors = [];
 
 	//makes sure that the fields have a valid input and fowards content to server
 	function SectionmissingField(check){
@@ -44,14 +45,25 @@ var main = function() {
     	return re.test(email);
 	}
 
-	function validatePassword (checkPassword) {
+	function checkPassword (checkPassword) {
 		if (password === checkPassword){
-			$('#repasswordText').empty();
-			$('#repasswordText').append('Retype-Password: ');
+			if(validatePassword(checkPassword)){
+				$('#repasswordText').empty();
+				$('#repasswordText').append('Retype-Password: ');
+			} else {
+				console.log('did not pass validation Password');
+				missingField = false;
+				$('#passwordText').empty();
+				$('#passwordText').append('Password:* Password did not meet requirements');
+				$('#repasswordText').empty();
+				$('#repasswordText').append('Retype-Password:* Password did not meet requirements');
+				$('#password').val('') 
+				$('#passwordType').val(''); 
+			}
 		} else {
 			missingField = false;
 			$('#passwordText').empty();
-			$('#passwordText').append('Password:*');
+			$('#passwordText').append('Password:* Password did not match');
 			$('#repasswordText').empty();
 			$('#repasswordText').append('Retype-Password:* Password did not match');
 			$('#password').val('') 
@@ -60,6 +72,28 @@ var main = function() {
 		}
 	}
 
+	//http://stackoverflow.com/questions/12090077/javascript-regular-expression-password-validation-having-special-characters
+	function validatePassword (testPassword) {
+		console.log(testPassword);
+		errors = [];
+		if(testPassword.length < 8){
+			errors.push('Your Password must be at least 8 characters');
+		}
+
+		if(testPassword.search(/[a-z]/i) < 0){
+			errors.push('Your password must contain at least one letter.');
+		}
+
+		if (testPassword.search(/[0-9]/) < 0){
+			errors.push(['Your password must contain at least one digit.']);
+		}
+
+		if (errors.length > 0){
+			alert(errors.join('\n'));
+			return false;
+		}
+		return true;
+	}
 
 	//checks that all the fields have an input by user
 	$('#Signbutton').click(function(){
@@ -130,7 +164,7 @@ var main = function() {
 			$('#repasswordText').append('Retype-Password:*');
 		}else {
 			passwordType = $('#passwordType').val();
-			validatePassword(passwordType);
+			checkPassword(passwordType); 
 		}
 
 		SectionmissingField(missingField);
