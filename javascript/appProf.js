@@ -7,17 +7,31 @@ var main = function() {
 		passwordType,
 		missingField,
 		$content,
-		errors = [];
+		errors = [],
+		logEmail,
+		logPassword;
 
 	//makes sure that the fields have a valid input and fowards content to server
 	function SectionmissingField(check){
 		console.log('checking fields');
 		if(check === false){
 			$('#fillSection').empty(); //for when user does nor fill fields properly
-			$('#fillSection').append('Please fill in area with *.');
+			$('#fillSection').append('Please fill in area(s) with *.');
 		} else {
 			console.log('Inputs are complete');
 			PostInformation();
+		}
+	}
+
+		//makes sure that the fields have a valid input and fowards content to server
+	function logField(check){
+		console.log('checking fields');
+		if(check === false){
+			$('#logFill').empty(); //for when user does nor fill fields properly
+			$('#logFill').append('Please fill in area(s) with *.');
+		} else {
+			console.log('Inputs are complete');
+			window.location = 'profileView.html';
 		}
 	}
 
@@ -95,8 +109,44 @@ var main = function() {
 		return true;
 	}
 
+	$('#logButton').click(function(){
+		missingField = true;
+
+		if($('#logEmail').val() === ''){
+			missingField = false;
+			$('#logEmailText').empty();
+			$('#logEmailText').append('Email:*');
+		} else {
+			logEmail = $('#logEmail').val();
+			if(validateEmail(logEmail)){
+				console.log(logEmail);
+				console.log('valid email login');
+				$('#logEmailText').empty();
+				$('#logEmailText').append('Email:');
+			} else {
+				logEmail = '';
+				$('#logEmailText').empty();
+				$('#logEmailText').append('Email:* Please Enter Valid Email');
+			}
+		}
+
+		if($('#logPassword').val() === ''){
+			missingField = false;
+			$('#logPasswordText').empty();
+			$('#logPasswordText').append('Password: *');
+		} else {
+			console.log('Password Saved');
+			logPassword = $('#logPassword').val();
+			$('#logPasswordText').empty();
+			$('#logPasswordText').append('Password:');
+		}
+
+		logField(missingField);
+	});
+
+
 	//checks that all the fields have an input by user
-	$('#Signbutton').click(function(){
+	$('#signButton').click(function(){
 
 		missingField = true;
 
@@ -138,7 +188,7 @@ var main = function() {
 			email = $('#email').val();
 			if(validateEmail(email)){
 				$('#emailText').empty();
-				$('#emailText').append('Last Name:');
+				$('#emailText').append('Email: ');
 				console.log(email);
 				console.log('valid email');
 			} else {
@@ -174,7 +224,8 @@ var main = function() {
 
 $(document).ready(main);
 
-
+//http://jshint.com/
+//configure enable jquery
 
 
 
