@@ -11,7 +11,7 @@ var main = function() {
 
 	//makes sure that the fields have a valid input and fowards content to server
 	function SectionmissingField(check){
-		console.log('checking fields')
+		console.log('checking fields');
 		if(check === false){
 			$('#fillSection').empty(); //for when user does nor fill fields properly
 			$('#fillSection').append('Please fill in area with *.');
@@ -19,7 +19,7 @@ var main = function() {
 			console.log('Inputs are complete');
 			PostInformation();
 		}
-	};
+	}
 
 	//going to suppy information to sql server 
 	function PostInformation () {
@@ -39,15 +39,15 @@ var main = function() {
 
 
 	//http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
-	function validateEmail(checkEmail) {
+	function validateEmail(email) {
     	//var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     	var re = /^([\w-]+(?:\.[\w-]+)*)@csu.fullerton\.edu/i;
     	return re.test(email);
 	}
 
-	function checkPassword (checkPassword) {
-		if (password === checkPassword){
-			if(validatePassword(checkPassword)){
+	function checkPassword (passwordVerify) {
+		if (password === passwordVerify){
+			if(validatePassword(passwordVerify)){
 				$('#repasswordText').empty();
 				$('#repasswordText').append('Retype-Password: ');
 			} else {
@@ -57,7 +57,7 @@ var main = function() {
 				$('#passwordText').append('Password:* Password did not meet requirements');
 				$('#repasswordText').empty();
 				$('#repasswordText').append('Retype-Password:* Password did not meet requirements');
-				$('#password').val('') 
+				$('#password').val(''); 
 				$('#passwordType').val(''); 
 			}
 		} else {
@@ -66,7 +66,7 @@ var main = function() {
 			$('#passwordText').append('Password:* Password did not match');
 			$('#repasswordText').empty();
 			$('#repasswordText').append('Retype-Password:* Password did not match');
-			$('#password').val('') 
+			$('#password').val(''); 
 			$('#passwordType').val(''); 
 
 		}
@@ -170,7 +170,7 @@ var main = function() {
 		SectionmissingField(missingField);
 
 	});
-}
+};
 
 $(document).ready(main);
 
