@@ -4,6 +4,7 @@ var main = function() {
 		lname,
 		email,
 		password,
+		passwordType,
 		missingField,
 		$content;
 
@@ -41,6 +42,22 @@ var main = function() {
     	//var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     	var re = /^([\w-]+(?:\.[\w-]+)*)@csu.fullerton\.edu/i;
     	return re.test(email);
+	}
+
+	function validatePassword (checkPassword) {
+		if (password === checkPassword){
+			$('#repasswordText').empty();
+			$('#repasswordText').append('Retype-Password: ');
+		} else {
+			missingField = false;
+			$('#passwordText').empty();
+			$('#passwordText').append('Password:*');
+			$('#repasswordText').empty();
+			$('#repasswordText').append('Retype-Password:* Password did not match');
+			$('#password').val('') 
+			$('#passwordType').val(''); 
+
+		}
 	}
 
 
@@ -107,6 +124,14 @@ var main = function() {
 			$('#passwordText').append('Password:');
 		}
 
+		if($('#passwordType').val() === ''){
+			missingField = false;
+			$('#repasswordText').empty();
+			$('#repasswordText').append('Retype-Password:*');
+		}else {
+			passwordType = $('#passwordType').val();
+			validatePassword(passwordType);
+		}
 
 		SectionmissingField(missingField);
 
