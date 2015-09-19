@@ -13,7 +13,7 @@ var main = function() {
 		console.log('checking fields');
 		if(check === false){
 			$('#fillSection').empty(); //for when user does nor fill fields properly
-			$('#fillSection').append('Please fill in area with *.');
+			$('#fillSection').append('Please fill in area(s) with *.');
 		} else {
 			console.log('Inputs are complete');
 			PostInformation();
